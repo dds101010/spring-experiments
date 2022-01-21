@@ -28,3 +28,47 @@ Explores using the properties file
 
 - Package: [`properties`](/src/main/java/properties)
 - Main Class: [`PropertiesTest`](/src/main/java/properties/PropertiesTest.java)
+
+### 5. Aspect Oriented Programming
+
+- Package: [`aop`](/src/main/java/aop)
+- Main Class: [`AOPTest`](/src/main/java/aop/AOPTest.java)
+
+Below two are equivalent
+
+```java
+public @interface SomeAnnotation {
+}
+
+@Component
+@Aspect
+class SomeAspect {
+  @Before("@annotation(SomeAnnotation)")
+  public void test () {
+    // ...
+  }
+}
+```
+
+and
+
+```java
+
+public @interface SomeAnnotation {
+}
+
+@Component
+@Aspect
+class SomeAspect {
+  @Pointcut("@annotation(SomeAnnotation)")
+  public void pointcut () {
+  }
+
+  @Before("pointcut()")
+  public void test () {
+    // ...
+  }
+}
+```
+
+Second approach may be better if you want to re-use same point-cut for multiple aspect methods.
