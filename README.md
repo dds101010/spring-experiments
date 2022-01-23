@@ -72,3 +72,22 @@ class SomeAspect {
 ```
 
 Second approach may be better if you want to re-use same point-cut for multiple aspect methods.
+
+### 5. Logging
+Using Lombok provided annotation for log field injection. In summary, I found `logback` to be more easy to use. Just add one dependency and you're good to go! 
+
+ref:
+- https://www.baeldung.com/slf4j-with-log4j2-logback
+- https://www.baeldung.com/logback
+  - https://logback.qos.ch/manual/layouts.html#conversionWord
+
+```
+@Log
+- Creates private static final java.util.logging.Logger log = 
+    java.util.logging.Logger.getLogger(LogExample.class.getName());
+
+@Slf4j
+- Creates private static final org.slf4j.Logger log = 
+    org.slf4j.LoggerFactory.getLogger(LogExample.class);
+
+```
